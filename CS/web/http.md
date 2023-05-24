@@ -116,7 +116,7 @@
 
 ---
 
-## http stateless(무상태성)
+## http stateless
 
 - 말그대로 상태를 가지지 않음
 - http 가 클라이언트나 서버의 상태를 확인 X
