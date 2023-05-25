@@ -366,7 +366,7 @@ for(int n: list){
 - ODR - (one definition rule) 
 - 값 전달 방식에서 const 는 의미 없다
 	- but, 참조 전달할때는 const 가 의미 있다!
-- [[recursion]] 
+- [[Recursion]] 
 	- **재귀 종료 조건이 젤 중요하다~
 	- 함수호출은 저렴한 연산은 아니여서, for문이 더 효율적일수있다. 
 	- 재귀호출로 함수 stack이 쌓인다

@@ -1,5 +1,4 @@
 
-
 ## intro
 - 컴퓨터는 한번에 데이터를 파악할 수 없다. 
 -  데이터를 하나씩 확인해야함
@@ -32,7 +31,7 @@ return false;
 ## 이진 탐색
 
 ### 정의
--  binary search ^dedf87
+-  binary search 
 - 두 구간으로 나누어서 탐색
 
 ### 효율성 

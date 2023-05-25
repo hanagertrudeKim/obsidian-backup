@@ -1,6 +1,6 @@
-# recursion 
 
 ## 정의
+
 - 함수가 **자기 스스로를 호출**
 - 함수내에서 자기 자신을 호출하여 반복하는것
 - 무한 루프에 빠질수있음
@@ -15,7 +15,7 @@
 
 
 ## 예시
-- 예제 
+
 ```c++
 int function(int a){
 	if(a == 0) return 0;
@@ -36,6 +36,7 @@ int main {
 ## 예시 2
 
 ### no recursion
+
 ```cpp
 output: 
 # 
