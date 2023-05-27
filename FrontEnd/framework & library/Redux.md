@@ -174,10 +174,6 @@ const store = configureStore({ reducer });
 
 - configureStore( ) 을 사용하면 Redux Developer Tools를 사용할수있음.
 
-![Untitled](Untitled.png)
-
-^ 에어비엔비의 state 확인해볼수도있음
-
 ### createSlice
 
 ```jsx
