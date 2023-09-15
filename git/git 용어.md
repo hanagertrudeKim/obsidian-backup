@@ -1,3 +1,8 @@
+---
+tags:
+  - git
+date:
+---
 
 ### merge
 1.  두 branch를 합치는 것.
