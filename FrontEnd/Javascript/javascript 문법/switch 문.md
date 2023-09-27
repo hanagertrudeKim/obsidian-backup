@@ -1,3 +1,7 @@
+---
+tags:
+  - javascript
+---
 # switch문
 
 복수의 if 조건문 사용시 가독성을 위해 switch문을 사용

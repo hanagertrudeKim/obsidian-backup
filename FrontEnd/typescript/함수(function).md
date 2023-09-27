@@ -1,5 +1,8 @@
-# 함수(function)
-
+---
+tags:
+  - FrontEnd
+  - typeScript
+---
 
 
 ## 함수 type

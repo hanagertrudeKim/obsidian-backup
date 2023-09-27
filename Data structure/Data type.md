@@ -38,7 +38,7 @@
 ### 자료구조의 종류
 - 필수 자료구조 8개
 	- [[Array]]
-	- [[Linked List]]
+	- [[List]]
 	- [[Stack]]
 	- [[Queue]]
 	- [[Hash table]]

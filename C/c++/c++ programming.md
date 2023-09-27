@@ -1,3 +1,8 @@
+---
+tags:
+  - Cpp
+  - programing
+---
 
 # 원시타입
 

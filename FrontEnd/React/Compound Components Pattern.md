@@ -1,8 +1,11 @@
+---
+tags:
+  - react
+  - component
+  - pattern
+  - FrontEnd
+---
 
----
-title: 'How to use Compound Components Pattern'
-date: '2023/02/06'
----
 
 ## Compound Components Pattern
 

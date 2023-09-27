@@ -1,3 +1,7 @@
+---
+tags:
+  - mac
+---
 shift => 커서링
 ---
 option + ![:왼쪽을_가리키는_손_모양:](https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-medium/1f448@2x.png)  | ![:오른쪽을_가리키는_손_모양:](https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-medium/1f449@2x.png)  => 단어 간 이동  

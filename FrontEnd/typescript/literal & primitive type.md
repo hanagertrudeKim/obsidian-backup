@@ -1,3 +1,8 @@
+---
+tags:
+  - FrontEnd
+  - typeScript
+---
 
 # literal type
 

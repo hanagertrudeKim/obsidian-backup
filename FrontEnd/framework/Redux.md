@@ -1,3 +1,8 @@
+---
+tags:
+  - FrontEnd
+  - store
+---
 # Redux 기본
 
 - 바닐라 자바스크립트 + redux 사용하기

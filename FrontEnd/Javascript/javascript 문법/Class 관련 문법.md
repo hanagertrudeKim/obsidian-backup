@@ -1,3 +1,9 @@
+---
+tags:
+  - javascript
+  - FrontEnd
+  - typeScript
+---
 # Class
 
 - 클래스란?

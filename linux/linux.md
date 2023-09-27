@@ -1,3 +1,7 @@
+---
+tags:
+  - linux
+---
 
 ### linux 개요
 - CLI(Command line interface)로 구성
@@ -25,4 +29,6 @@ rm -r : 폴더 삭제
 wget : 웹에서 다운로드
 sudo : 관리자 권한 실행 (permission관련 오류 해결)
 vi : 파일 읽기 / q: 로 닫기
-```d
+```
+
+## lunux server

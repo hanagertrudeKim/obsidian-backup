@@ -1,3 +1,8 @@
+---
+tags:
+  - react
+  - typeScript
+---
 # Generic
 
 - Generic

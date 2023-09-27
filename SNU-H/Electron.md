@@ -1,7 +1,6 @@
 ---
 tags:
   - electron
-  - SNU
 ---
 ## Electron이란? 
 - javascript, html, css사용한 **데스크탑앱 개발 프레임워크**
@@ -73,8 +72,6 @@ ipcRenderer.send('CHANNEL_NAME', 'message')
 		- preload.ts (rendere 정의함)
 	- renderer (frontend, browser)
 		-  renderer-ipc가 통신하는곳
-
-
 ## module
 ### dialog
 
@@ -103,3 +100,4 @@ dialog.showOpenDialogSync([browserWindow, ]options)
 		- openFile : allow file select
 		- openDirectory : allow directories select
 			- window 와 linux 에서는 don't allow both a file, directory selector 
+		- "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",

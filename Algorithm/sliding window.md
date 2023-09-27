@@ -1,3 +1,7 @@
+---
+tags:
+  - algorithm
+---
 
 # sliding window 알고리즘
 

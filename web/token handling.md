@@ -1,3 +1,9 @@
+---
+tags:
+  - web
+  - FrontEnd
+  - token
+---
 
 참고 문서 : https://datatracker.ietf.org/doc/html/rfc6749
 

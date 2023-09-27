@@ -1,3 +1,9 @@
+---
+tags:
+  - react
+  - FrontEnd
+  - setting
+---
 
 ## src 파일 구조
 

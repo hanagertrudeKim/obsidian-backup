@@ -1,3 +1,7 @@
+---
+tags:
+  - deep-learning
+---
 
 # practice deep learning for coder 
 

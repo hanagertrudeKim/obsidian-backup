@@ -1,3 +1,8 @@
+---
+tags:
+  - FrontEnd
+  - typeScript
+---
 # type 정리
 
 - type 정의

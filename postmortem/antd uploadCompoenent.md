@@ -1,15 +1,13 @@
 ---
-title: 'antd를 활용한 upload component의 api request와 response의 타입 에러'
-date: '2023/01/16 ~ 2023/01/21'
+title: antd를 활용한 upload component의 api request와 response의 타입 에러
+date: 2023/01/16 ~ 2023/01/21
+tags:
+  - FrontEnd
+  - react
+  - typeScript
+  - antd
 ---
 
-Title: antd를 활용한 upload component의 api request와 response의 타입 에러
-
-Incident date: 2023/01/16 ~ 2023/01/21
-
-Owner: me
-
-Tags: #antd #upload #typeScript 
 
 
 Summary: antd를 활용해 upload component를 만드는 과정에서 api request와 response의 타입 에러가 계속해서 발생하였음. form을 통해 제출해야하는 api `response` 타입과 직접 antd를 통해 set되는 value의 타입이 달라 문제가 생김. `http 501`, `http 400` 에러가 같이 생겨남

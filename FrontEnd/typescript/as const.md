@@ -1,3 +1,8 @@
+---
+tags:
+  - FrontEnd
+  - typeScript
+---
 
 - [참고 링크1](https://blog.toycrane.xyz/typescript%EC%97%90%EC%84%9C-%ED%9A%A8%EA%B3%BC%EC%A0%81%EC%9C%BC%EB%A1%9C-%EC%83%81%EC%88%98-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0-e926db079f9)
 - 리터럴 타입 [[유니온（＆） 교차 타입#Literal type]]

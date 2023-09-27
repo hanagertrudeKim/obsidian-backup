@@ -1,3 +1,10 @@
+---
+tags:
+  - algorithm
+  - C언어
+  - Cpp
+  - memory
+---
 
 ## 16 진법
 

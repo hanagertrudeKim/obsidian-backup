@@ -1,3 +1,7 @@
+---
+tags:
+  - javascript
+---
 # 함수
 
 
