@@ -117,7 +117,7 @@ series_path_dict[series_uid] = [dcm_path]
 
 
 
-1. deidentify 함수 수정
+2. deidentify 함수 수정
 - 기존에 코드를 살펴보면 `patientId, patientName = subj`로 비식별화된다.
 - 내가 수정해야할건 `patientId` = 새로 만들 예정인 랜덤`subj`로 , `patientName` = `subj_date` 로 비식별화하는것이다.
 - subj에 대한 구체적인 확정 사항이 없기때문에, 
@@ -136,6 +136,8 @@ dcm.PatientName = f"{subj}_{ct_date}"
 #### 중간 결과
 정말 감격스럽게 드디어 스크립트를 돌렸다...
 ![[Pasted image 20230912185540.png]]
+
+---
 
 #### Node 와 Python 사이에 Data 전달
 - electron에서 넘겨온 folder path로 deid하는 명령어를 실행한다.
@@ -166,6 +168,6 @@ terminal_command = f"python3 ./dicom_deidentifier.py {folder_path}"
 os.system(terminal_command)
 ```
 
-🥹 잘 작동하는것을 확인했다... 
+🥹 잘 작동하는것을 확인했다.. 스크립트 수정 완료!
 
 

@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"f690d42f7cd801cb","x":-178,"y":102,"width":400,"height":400,"type":"file","file":"SNU-H/DICOM Deidentifier.md"},
+		{"id":"f690d42f7cd801cb","x":-178,"y":102,"width":400,"height":400,"type":"file","file":"SNU-H/DICOM Deidentifier script.md"},
 		{"id":"19c4609e5dd683a8","x":22,"y":-760,"width":1058,"height":688,"type":"file","file":"SNU-H/DICOM Deidenrifier 데스크탑 앱 개발.md"},
 		{"id":"f9fa60a8a26195bf","x":624,"y":222,"width":776,"height":618,"type":"file","file":"SNU-H/Electron.md"},
 		{"id":"7479f9b5dc012cc6","x":-279,"y":672,"width":400,"height":400,"type":"file","file":"SNU-H/DICOM.md"},

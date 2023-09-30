@@ -48,7 +48,7 @@ tags:
 ### 과정
 
 -  [[DICOM]] 정리
-- [[DICOM Deidentifier]] 정리
+- [[DICOM Deidentifier script]] 정리
 #### electron + python
 - electron으로 받은 폴더를 deid 스크립트로 돌려야하는데, 폴더를 전달할 방법과 서버가 필요한것인지 등등의 문제가 발생
 
@@ -61,9 +61,9 @@ tags:
 			- but, 로컬에서 얻어온 path 를 통해서 접근이 가능할까?
 			- => 실제 스크립트를 돌려보니, 같은 파일 디렉토리가 아니더라도, 접근이 가능하다..
 			  => so, 파일 path 를 넘기는것이 핵심인것같음
-		2. 어떻게 path를 얻어오고, 어떻게 넘길것인가?
-			- folder를 input으로 받으니, 각각의 file의 path만 받아와지는것을 확인했다. 
-			- folder path 를 받아오는 방법은 electron 의[[ Electron#dialog | dialog]] 모듈을 사용하여, 얻어올수있을것같다.
+		2. 일단 인터페이스쪽에서는 어떻게 path를 얻어오고, 어떻게 넘길것인가?
+			- input을 사용하니 각각의 file의 path가 받아와져 사용불가.
+			- electron 의[[ Electron#dialog | dialog]] 모듈을 사용하여, folder path를 얻어올수있을것같다.
 ```js
 const result = await dialog.showOpenDialog(mainWindow, {
 	properties: ['openDirectory'],
@@ -93,7 +93,7 @@ const pythonProcess = spawn('python3', [pythonScript, folderPath]);
 - `spawn` 메서드를 사용해 node.js 환경에서 python 인터프리터를 실행시키면... 완성
 
 - 이제 nodejs 에서의 모든 준비는 다 끝났으니, 파이썬 스크립트의 최종 수정을 거치면 된다
-- => [[DICOM Deidentifier#Node 와 Python 사이에 Data 전달 | Node와 Python 사이에 Data 전달]]
+- => [[DICOM Deidentifier script#Node 와 Python 사이에 Data 전달| Node와 Python 사이에 Data 전달]]
   ✅ 이로써 data 돌리는 파이프라인은 완성되었다.
 
 #### dicom deid 실행 시점 변경
@@ -177,7 +177,7 @@ window.electron.ipcRenderer.on(
 			- => **BUT, python이 없는 환경에서는 실행 불가함** 
 		- Flask 서버 구축
 			- python이 없는 환경에서 돌리려면, 서버 필요함
-			- => [[Python Flask 백엔드백엔드 서버 구축]] 
+			- => [[Flask 백엔드 서버 구축]] 
 				- python 을 사용하여 머신러닝 작업을 할 경우에 flask를 사용해 서버를 많이 구축하는것같다
 				- 문제는 서버를 생성하는데, aws 를 이용해 서버를 사야한다는거...?
 				- 병원에서 사용하고있는 서버가 있는지 문의해야겠다
@@ -188,4 +188,4 @@ window.electron.ipcRenderer.on(
 				- 근데 건당 비용이 발생한다는 점에서...조금 걸린다.
 		- 결론 => 모르겠다.. 머리 식히고 다시 해야지..
 2. ipc 관련 에러로, 이에 관해서 다시 정리해봄 ==> [[Electron]]
-3. 배포 관련 에러 => [[Electron 배포]]
+3. 배포 관련 에러 => [[Electron BackEnd 배포]]

@@ -140,7 +140,7 @@ async function runPython(dicomPath: string) {
 ```
 
 `socket hang out` 이라는 난생 처음보는 에러가 나왔다.
-찾았다. main 의 return 을 지정해주지않고, 기존의 `sys.exit('success')` 통해 코드 강제 종료시키면서 success 를 반환하니 거기서부터 꼬인것같다
+=> 찾았다. main 의 return 을 지정해주지않고, 기존의 `sys.exit('success')` 통해 코드 강제 종료시키면서 success 를 반환하니 거기서부터 꼬인것같다
 아래와 같이 성공하면 원래 의도한대로 'success'를 반환할수있게 고쳐주었다.
 
 ```python
@@ -150,7 +150,6 @@ def main(src_path):
 		return "success"
 	else:
 		run_deidentifier(src_path)
-		# 작업이 성공하면 종료 코드 'success'을 반환
 		return "success"
   
 	# 작업이 실패하면 종료 코드 'error'을 반환
