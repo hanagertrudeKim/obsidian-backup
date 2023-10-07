@@ -62,6 +62,7 @@ const request = net.request({
 });
 ```
 
+#### node 의 request 로 호출
 - 이제 request 를 통해 api 를 호출해준다.
 	- `request.on` 을 통해 요청을 해준다
 	- `response.on` 을 통해 응답을 받아온다
@@ -118,6 +119,8 @@ GET 메서드의 return 값이 잘못되어서 그런가 찾아봤는데, REST A
     예) 회원가입, 회원탈퇴, 비밀번호 수정  
     → 데이터 전달 : 바로 보이지 않는 HTML body에 key:value 형태로 전달
 ```
+
+#### axios 로 호출 
 
 그리고 쓰기 불편한 electron 의 net 모듈보다는 간편한 axios 를 통해 코드를 리팩토링 해주었다.
 ```js

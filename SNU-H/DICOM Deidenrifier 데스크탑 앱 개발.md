@@ -188,4 +188,4 @@ window.electron.ipcRenderer.on(
 				- 근데 건당 비용이 발생한다는 점에서...조금 걸린다.
 		- 결론 => 모르겠다.. 머리 식히고 다시 해야지..
 2. ipc 관련 에러로, 이에 관해서 다시 정리해봄 ==> [[Electron]]
-3. 배포 관련 에러 => [[Electron BackEnd 배포]]
+3. 배포 관련 에러 => [[Electron&BackEnd 배포]]
