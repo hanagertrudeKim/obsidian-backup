@@ -3,16 +3,7 @@ tags:
   - dicom
   - python
 ---
-********
-#### TODO
-- 사용자가 DICOM을 업로드 하면 
-- -> DICOM 이미지 메타 데이터 읽어서 **MRN(=patient_id) + CT Date 추출 ** => 마지막 csv 추출
-- -> **Subj 랜덤하게 생성** (이 부분은 교수님이랑 상의해야할 듯) 
-- -> Patient ID 는 Subj로, Patient Name은 Subj_CTDate 으로 deidentify, 나머지는 지금 스크립트 그대로 deidentify 
-- -> deidentification 완료 후 Subj & MRN(=medical record number = patient id??) & CTDate을 CSV 파일로 따로 저장 
-
-### 기존 deidentifier 스크립트 분석
-
+### deidentifier이란?
 #### deidentification (비식별화)
 - 누군가의 정체성이 공개되지 않도록 예방하기 위해 사용하는 과정
 - 연구 참여자들의 사생활을 보호하기 위해 비식별화함
@@ -25,6 +16,16 @@ tags:
 		  => PHI(Protected Health Information) 및 개인 정보를 삭제
 - **dicom 이미지 메타데이터 분석**
 	- dicom 파일을 분석해서 메타 데이터 추출 (patient id, name, study descripttion 등등)
+
+
+###  TODO
+- 사용자가 DICOM을 업로드 하면 
+- -> DICOM 이미지 메타 데이터 읽어서 **MRN(=patient_id) + CT Date 추출 ** => 마지막 csv 추출
+- -> **Subj 랜덤하게 생성** (이 부분은 교수님이랑 상의해야할 듯) 
+- -> Patient ID 는 Subj로, Patient Name은 Subj_CTDate 으로 deidentify, 나머지는 지금 스크립트 그대로 deidentify 
+- -> deidentification 완료 후 Subj & MRN(=medical record number = patient id??) & CTDate을 CSV 파일로 따로 저장 
+
+### deidentifier 스크립트 분석
 
 #### 필요한 파일 & 디렉토리 설정
 1. **DICOM 이미지 폴더**: 원본 DICOM 이미지가 있는 폴더 
@@ -44,12 +45,12 @@ python3 script.py /path/to/dicom/folder
 ```
 - 이러한 인자는 스크립트 내에서 각각 `src_path`, `csv_path`, `dst_path` 변수에 저장됨
 
-
 ### 기존 deidentifier 스크립트 수정사항
 
-- DICOM 이미지 메타 데이터 읽어서 MRN(=일련번호?) + CT Date 추출
-- deidentify 대상 수정
-- terminal 명령어가 아닌, 파일 인자 전달로 돌아가는 코드
+수정할 순서를 정리해보자면,
+1. DICOM 이미지 메타 데이터 읽어서 MRN(=일련번호?) + CT Date 추출 
+2. deidentify 대상 수정
+3. terminal 명령어가 아닌, 파일 인자 전달로 돌아가는 코드
 #### modified output
 - De-identified dicom folder
 	- patient id => subj
@@ -61,7 +62,7 @@ python3 script.py /path/to/dicom/folder
 
 ### 수정 과정
 
- 1. dicom 에서 MRN과 Ct_date 추출하기
+#### 1.DICOM 이미지 메타 데이터 읽어서 MRN(=일련번호?) + CT Date 추출
 - 기존 dicom 데이터 추출 함수인 analyze_dcm_series에서 수정함
 - 추출할 데이터를 MRN, Ct_date로 바꾸고 나머지 필요없는 데이터들은 삭제
 ```python
@@ -117,7 +118,7 @@ series_path_dict[series_uid] = [dcm_path]
 
 
 
-2. deidentify 함수 수정
+#### 2.deidentify 대상 수정
 - 기존에 코드를 살펴보면 `patientId, patientName = subj`로 비식별화된다.
 - 내가 수정해야할건 `patientId` = 새로 만들 예정인 랜덤`subj`로 , `patientName` = `subj_date` 로 비식별화하는것이다.
 - subj에 대한 구체적인 확정 사항이 없기때문에, 
@@ -133,13 +134,13 @@ dcm.PatientName = f"{subj}_{ct_date}"
 ```
 - f 라는 python의 3.6버전부터 지원되는 문자열 포매팅 기능을 사용하여, 문자열을 조합해주었다.
 
-#### 중간 결과
+#### ** 중간 결과 확인
 정말 감격스럽게 드디어 스크립트를 돌렸다...
 ![[Pasted image 20230912185540.png]]
 
 ---
 
-#### Node 와 Python 사이에 Data 전달
+#### 3.terminal 명령어가 아닌, 파일 인자 전달로 돌아가는 코드
 - electron에서 넘겨온 folder path로 deid하는 명령어를 실행한다.
 
 - sys module을 import한다.

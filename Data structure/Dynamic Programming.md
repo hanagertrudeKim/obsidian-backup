@@ -1,6 +1,4 @@
 ## 동적 할당
-
-
 ### 프로그램 동작 원리
 - 컴퓨터 구조
 	- CPU, RAM(주기억장치), HDD(하드디스크/보조기억장치), OS(운영체제)
@@ -51,3 +49,65 @@
 	- new - delete
 	- new[] - delete[]
 - 메모리 해제후 포인터의 경우 `NULL` 로 초기화해 에러를 방지한다.
+
+
+## 동적 배열 기법
+- 유지해야하는것
+	- 동적 배열
+	- 동적 배열 사용 정보 : 크기, 용량
+		- [[c++ programming]]
+			- 최대 용량 : 컴퓨터에 따라 다름 (size_t 최댓값)
+				- size_t (부호가 없는 정수 타입, sizeof의 반환 타입)
+			- 크기 정보  : top 
+			- c++은 동적배열이 내부 멤버 변수로 불가피함 => **[[Big5]]** 필수
+				- 소멸자, 복사 생성자, 복사 대입 연산자, 이동 생성자, 이동 대입 연산자
+				- copy-and-swap idiom 활용하여 코드 중복 제거
+			- **초깃값 목록**
+				- std::initialize_list를 이용하여 초깃값 생성자 정의 가능
+```c++
+void increaseCapacity(){
+	capacity *= 2;
+	int* tmp{new int[capacity]};
+	std::copy(items, items + top, tmp);
+	delete [] items;
+	items = tmp;
+}
+```
+	- 용량을 두배로 늘리고, 늘린곳에 기존 데이터 복사
+	- 그리고 반납, items에 다시 복사한것 할당?
+
+- 2배로 늘려야하나???
+	- 2배로 늘렸는데 쓰는 공간이 작으면 공간 낭비 됨 => 요즘은(?) 1.5배 or 1.2배로 늘림 (1배 이상)
+
+#### 사용법
+- 자료구조 생성할때 데이터 개수 미리 알면 적절한 용량으로 확보
+	- 내부적으로 여러번 확장보다 처음에 충분히 확보하는게 효과적임
+	- 여러번 자동 확장하는것보다 특정 시점에서 충분히 확장할수있다면 하는게 좋음
+- 다음을 파악하여 효과적으로 할수있어야한다.
+	- 총 삽입하는 데이터 수
+	- 데이터를 삽입하는 특성 (빈도, 주기, 간격, 양 등)
+#### push
+```cpp
+void push(int item){
+	if(top==capacity) increaseCapacity();
+	items[top++] = item;
+}
+```
+#### pop
+```cpp
+int pop(){
+	if(top == 0){
+		throw std::runtime_error("");
+		return items[--top]; //c++ 표준 라이브러리는 보통 pop이 값을 반환하지않음
+	}
+}
+```
+#### peek
+```cpp
+int peek(){
+	if(top == 0)
+		throw std::runtime_error("");
+	return items[top-1];
+}
+```
+

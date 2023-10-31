@@ -1,0 +1,10 @@
+
+[[as const]]
+[[Class]]
+[[Generic]]
+[[Interface]]
+[[literal & primitive type]]
+[[type 정리]]
+[[유니온（＆） 교차 타입]]
+[[유틸리티 타입]]
+[[함수(function)]]

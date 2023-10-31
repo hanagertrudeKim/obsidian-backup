@@ -37,10 +37,10 @@ date: 2023.09.21
 - 실행파일 빌드하기
 	- `-F` : 한 실행파일로 빌드함
 ```python
-sudo pyinstaller -F api.py   
+sudo pyinstaller -F api.py
 ```
 
-### exe 파일로 flask 서버 실행
+### exe 파일로 flask 임시 서버 실행
 electron 윈도우가 시작되는 시점에서, flask 서버가 실행하도록 해준다.
 ```js
 function createWindow() {
@@ -67,12 +67,22 @@ function createWindow() {
 	- 원인은, `pydicom` 의 submodule을 pyinstall 이 읽지못해, 직접 추가해줘야한다고한다.
 	  api.spec 의 `hiddenModules` 에 해당 모듈을 추가해주었다.
 ```ruby
+from PyInstaller.utils.hooks import collect_submodules
+
+
 hiddenimports = collect_submodules('pydicom'),
 ```
 - 해당 package 를 잘 읽어오는것을 확인했다.
 
+**주의사항
+- spec 내용을 적용해 다시 EXE 파일을 만들 때, 반드시 .spec 파일을 pyinstall로 불러와줘야한다.
+```python 
+pyinstaller --onefile api.spec
+```
+
+
 ### axios 를 통한 http method 호출
-이전에 미리 짜놓은 [[Flask 백엔드 서버 구축#axios 로 호출 | axios 호출]] 을 통해 method 를 사용하여 deid 를 진행하도록한다.
+이전에 미리 짜놓은 [[Flask로 백엔드 구축하기#axios 로 호출| axios 호출]] 을 통해 method 를 사용하여 deid 를 진행하도록한다.
 
 ### flask 서버 종료 
 이제 window 가 종료될때 서버도 같이 종료될수있게 서버 종료 코드를 추가해준다.

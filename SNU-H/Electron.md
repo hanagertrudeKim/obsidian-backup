@@ -23,7 +23,7 @@ tags:
 			- frontend process
 			- 서로 독립적으로 동작
 
-## IPC precess
+## IPC precess 에 대한 조사
 - electron에서 사용되는 기술
 	- 웹기술에 빗대자면, 프론트와 백엔드간의 통신을 위해서 필요한 모듈?
 - **프로세스 간 통신**
@@ -64,7 +64,7 @@ ipcMain.on('CHANNEL_NAME', (evt, payload) => { })
 ipcRenderer.send('CHANNEL_NAME', 'message')
 ```
 
-### 파일 구조
+## 파일 구조 세팅
 - boiler palate에서 제공하는 파일 구조를 살펴보면 대표적으로 두개로 나뉘어진다.
   사람마다 정의하는것은 다르겠지만, 나는 이렇게 구분하기로했다.
 	- main (backend, server)
@@ -72,32 +72,68 @@ ipcRenderer.send('CHANNEL_NAME', 'message')
 		- preload.ts (rendere 정의함)
 	- renderer (frontend, browser)
 		-  renderer-ipc가 통신하는곳
-## module
-### dialog
 
-> Display native system dialogs for opening and saving files, alerting, etc.
 
-- **파일을 열거나 저장할수있는 모듈**
-- 알림을 표시하기 위한 네이티브 시스템 대화 상자를 표시
-- 파일이나 디렉터리를 다중으로 선택하는 예시 코드
-	- 렌더러 프로세스에서 열고싶다면, `remote` 를 통해 접근
-```js 
-const { dialog } = require('electron')
-console.log(dialog.showOpenDialog(
-	{ properties: ['openFile', 'multiSelections'] }))
-```
-#### method
-- dialog 모듈은 다음과 같은 메서드를 가지고있다.
+## ipc 모듈을 통하여 path 받아오기
+- 원래는 ipc-dicom 채널이름의 ipcMain으로 보내지는 순간 (= select folder 버튼이 눌리는 순간) 에 deid 가 되도록 설정해놨다.
+- 다른 form들을 받을 가능성이 있음으로 deid 시점을 form 입력을 완료하고 난 후, submit 시점으로 변경하고싶었다.
+- 해결 방법
+	- ipc 채널을 두개 만들고
+	  1. dicom folder path 받는 ipc
+	     - reply 로 path 를 다시 renderer 로 보내, 폴더가 업로드 되었다는걸 확인할수있음
+	  2. dicom 포함 다른 form data 제출 ipc
+	     - 이 시점에 form 데이터들 서버에 저장
+	     - python died 스크립트 실행
+- 두개의 ipc 정의
+(추후의 리팩토링이 조금 필요할듯싶다)
 ```js
-dialog.showOpenDialogSync([browserWindow, ]options)
+///dicom 파일만을 다루는 main-ipc
+ipcMain.on('ipc-dicom', async (event) => {
+console.log('응답');
+const result = await selectFolder();
+
+event.reply('ipc-dicom-reply', result);
+});
+
+/// form data를 다루는 main-ipc
+ipcMain.on('ipc-form', async (event, arg) => {
+console.log(arg);
+runPython();
+
+event.reply('ipc-form-reply', '제출을 완료했습니다');
+
+});
 ```
-- browerWindow(opt)
-	- allows making it modal in parent window
-- options : object
-	- buttonLabel : custom label for the confirm btn
-	- filters : filefilter[]
-	- properites : features the dialog should use
-		- openFile : allow file select
-		- openDirectory : allow directories select
-			- window 와 linux 에서는 don't allow both a file, directory selector 
-		- "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
+
+- renderer-ipc 에도 reply 를 보내, 업로드 완료된 사실과, form 제출의 성공 여부를 알수있게 수정해주었다. 
+```js
+//upload function
+function selectFolder() {
+window.electron.ipcRenderer.sendMessage('ipc-dicom');
+
+// main ipc에서 응답 받기
+window.electron.ipcRenderer.on(
+	'ipc-dicom-reply', (arg: any) => {
+		console.log('ipc-dicom-reply:', arg);
+		setFilePath(arg);
+	});
+}
+
+//form submit function
+const clickBtn = (e: any) => {
+e.preventDefault();
+console.log(formValues);
+
+// main ipc로 form data 보내기
+window.electron.ipcRenderer.sendMessage(
+	'ipc-form',
+	JSON.stringify(formValues)
+);
+
+// main ipc에서 응답 받기
+window.electron.ipcRenderer.on(
+	'ipc-form-reply', (arg: any) => {
+		console.log('ipc-form-reply:', arg);
+	});
+};
+```

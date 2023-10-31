@@ -21,4 +21,4 @@ date: 2023.09.10
 				- attibute에 속함
 					- tag를 통해 element 들을 구분지음
 					-  ex) ![[Pasted image 20230912164830.png]]
-					- **=> 실제 [[DICOM Deidentifier script]] 를 통해 추출되는 메타 데이터**
+					- **=> 실제 [[DICOM de-Identifier script 수정]] 를 통해 추출되는 메타 데이터**
