@@ -1,23 +1,19 @@
 
-**code convention**
+#### code convention
 [[Lint]]
 [[웹 접근성]]
-
-**css**
+#### css
 [[SCSS]]
-
-**framework**
+#### framework
 [[React-Query]]
 [[Redux]]
-
-**javascript**
+#### javascript
 [[javascript 문법]]
 [[javascript 실습]]
-
-**react**
+#### react
 [[nomad]]
 [[react 정리]]
 
-**typescript**
-
+#### typescript
+[[typescript]]
 

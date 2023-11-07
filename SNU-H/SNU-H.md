@@ -17,9 +17,7 @@
 [[node.js의 path 모듈 다루기]]
 [[node.js의 spawn 모듈로 파이썬 실행하기]]
 
-
 ---
-
 #### pyQt5
 [[PyQt app 만들기]]
 

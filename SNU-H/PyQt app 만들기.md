@@ -8,5 +8,21 @@
 
 ui 업데이트
 ```
-pyuic5 mainwindow.ui -o MainWindow.py
+pyuic6 mainwindow.ui -o MainWindow.py
 ```
+
+앱 구축
+```python
+python3 app.py
+```
+
+- pyinstaller 로 앱 빌드
+```python
+pyinstaller --onefile --icon=cloud.icns app.py
+```
+
+- pyinstaller app.spec 업데이트
+```python
+pyinstaller app.spec
+```
+
