@@ -1,18 +1,18 @@
 {
 	"nodes":[
-		{"id":"d5d913a04a4a0b06","type":"file","file":"Data structure/Data structure.md","x":360,"y":-300,"width":480,"height":560,"color":"2"},
-		{"id":"c82c67ce43eefaa5","type":"file","file":"C/C.md","x":360,"y":360,"width":480,"height":680,"color":"2"},
-		{"id":"4b4432d7f1bc4849","type":"file","file":"linux/linux.md","x":-610,"y":1440,"width":360,"height":200},
-		{"id":"e4b0c72647797c66","type":"file","file":"system setting/system setting.md","x":-1030,"y":1240,"width":380,"height":400},
-		{"id":"7527a249032c0af0","type":"file","file":"programing/programing.md","x":-250,"y":-300,"width":440,"height":560,"color":"1"},
-		{"id":"ffa6a639a3a984fb","type":"file","file":"Algorithm/Algorithm.md","x":-730,"y":-300,"width":400,"height":560,"color":"1"},
-		{"id":"0808231d403a926c","type":"file","file":"SNU-H/SNU-H.md","x":1040,"y":470,"width":760,"height":1010,"color":"6"},
-		{"id":"ba3572af393fbe77","type":"file","file":"Deep Learning/Deep Learning.md","x":1040,"y":-310,"width":520,"height":290,"color":"6"},
-		{"id":"9428df06e0969a61","type":"file","file":"python/python.md","x":1040,"y":30,"width":520,"height":360,"color":"6"},
-		{"id":"02a6927d8f6b3ef9","type":"file","file":"git/git.md","x":-610,"y":1220,"width":360,"height":160},
-		{"id":"279af0f2bc829dfa","type":"file","file":"web/web.md","x":-480,"y":420,"width":540,"height":480,"color":"5"},
-		{"id":"5a2b6298717900d2","type":"file","file":"postmortem/postmortem.md","x":-180,"y":1100,"width":400,"height":380},
-		{"id":"7ab8ac110d392c91","type":"file","file":"FrontEnd/FrontEnd.md","x":-1390,"y":210,"width":550,"height":890,"color":"5"}
+		{"id":"d5d913a04a4a0b06","type":"file","file":"❒ Data structure/❒ Data structure.md","x":360,"y":-300,"width":480,"height":560,"color":"2"},
+		{"id":"c82c67ce43eefaa5","type":"file","file":"❒ C/❒ C.md","x":360,"y":360,"width":480,"height":680,"color":"2"},
+		{"id":"4b4432d7f1bc4849","type":"file","file":"❒ linux/❒ linux.md","x":-610,"y":1440,"width":360,"height":200},
+		{"id":"e4b0c72647797c66","type":"file","file":"💻 system setting/💻 system setting.md","x":-1030,"y":1240,"width":380,"height":400},
+		{"id":"7527a249032c0af0","type":"file","file":"❒ programing/❒ programing.md","x":-250,"y":-300,"width":440,"height":560,"color":"1"},
+		{"id":"ffa6a639a3a984fb","type":"file","file":"❒ Algorithm/❒ Algorithm.md","x":-730,"y":-300,"width":400,"height":560,"color":"1"},
+		{"id":"0808231d403a926c","type":"file","file":"🔭 SNU-H/🔭 SNU-H.md","x":1040,"y":470,"width":760,"height":1010,"color":"6"},
+		{"id":"ba3572af393fbe77","type":"file","file":"❒ Deep Learning/❒ Deep Learning.md","x":1040,"y":-310,"width":520,"height":290,"color":"6"},
+		{"id":"9428df06e0969a61","type":"file","file":"❒ python/❒ python.md","x":1040,"y":30,"width":520,"height":360,"color":"6"},
+		{"id":"02a6927d8f6b3ef9","type":"file","file":"❒ git/❒ git.md","x":-610,"y":1220,"width":360,"height":160},
+		{"id":"279af0f2bc829dfa","type":"file","file":"💻 web/💻 web.md","x":-480,"y":420,"width":540,"height":480,"color":"5"},
+		{"id":"5a2b6298717900d2","type":"file","file":"❒ postmortem/❒ postmortem.md","x":-180,"y":1100,"width":400,"height":380},
+		{"id":"7ab8ac110d392c91","type":"file","file":"❒ FrontEnd/❒ FrontEnd.md","x":-1390,"y":210,"width":550,"height":890,"color":"5"}
 	],
 	"edges":[
 		{"id":"7dd141ae3f8cd182","fromNode":"02a6927d8f6b3ef9","fromSide":"bottom","toNode":"4b4432d7f1bc4849","toSide":"top","toEnd":"none"},
