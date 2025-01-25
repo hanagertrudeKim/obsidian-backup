@@ -1,8 +1,7 @@
 
 
-[[Object-Oriented Programming]]
-[[programing concept]]
+%% Begin Waypoint %%
+- [[programing concept]]
+- [[Software Engineering]]
 
-
-- software engineering
-[[Software Engineering]]
+%% End Waypoint %%

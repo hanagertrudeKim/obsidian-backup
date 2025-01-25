@@ -1,10 +1,14 @@
 
-[[자료구조]]
 
-[[Array]]
-[[Dynamic Programming]]
-[[Linked-List]]
-[[Queue]]
-[[Stack]]
-[[Tree]]
-[[Graph]]
+%% Begin Waypoint %%
+- [[Array]]
+- [[Dynamic Programming]]
+- [[Graph]]
+- [[Linked-List]]
+- [[Queue]]
+- [[Stack]]
+- [[string]]
+- [[Tree]]
+- [[자료구조]]
+
+%% End Waypoint %%

@@ -1,2 +1,5 @@
 
-[[antd uploadCompoenent]]
+%% Begin Waypoint %%
+- [[antd uploadCompoenent]]
+
+%% End Waypoint %%

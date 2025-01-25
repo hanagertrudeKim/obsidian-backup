@@ -1,7 +1,7 @@
 
 
+##  Flask 세팅
 
-##  setting Flask
 - Flask 설치
 ```python
 pip3 install Flask
@@ -49,7 +49,42 @@ app.run(host='127.0.0.1', port=5000, debug=True)
 python3 src/server/api.py src  
 ```
 
+
+## CLOUDTYPE 을 이용하여 배포하기
+
+이제 [CLOUDTYPE](https://app.cloudtype.io) 을 이용하여 배포를 해준다.
+
+우선 flask 의존성을 추가해주기 위해 requirement.txt가 필요하다.
+
+ - requirements.txt 생성 명령어
+```python
+pip3 freeze > requirements.txt
+```
+
+cludtype을 살펴보면, start command 가 `gunicorn -b 0.0.0.0:5000 app:app` 로 gunicorn 이라는 패키지로 실행되는것을 알수있다. 이를 위해 gunicorn을 requirements 에 추가해주자
+
+- `gunicorn` 설치
+```python
+pip3 install gunicorn
+```
+- requirements.txt 종속성 업데이트를 해준다.
+```python
+pip3 freeze > requirements.txt
+```
+
+이제 CLOUDTYPE 설정 명령어를 다듬(?)어준다.
+```python
+gunicorn -b 0.0.0.0:5000 [Flask를 import 하여 어플리케이션을 실행하는 파일명]:app 
+# [예시]cloudtype.py 에서 Flask를 import 하여 어플리케이션을 실행 
+gunicorn -b 0.0.0.0:5000 cloudtype:app
+```
+
+그리고 빌드해주면 배포가 완성된다.
+
+
+
 ## electron 호출
+
 처음에는 axios로 호출하려했으나, electron에서 `net` 이라는 메서드를 이용하여 http 요청을 한다는것을 발견하였다.
 이를 이용하여서 api 를 호출해보자.
 
@@ -64,7 +99,7 @@ const request = net.request({
 });
 ```
 
-#### node 의 request 로 호출
+### node.js  request 메서드 이용
 - 이제 request 를 통해 api 를 호출해준다.
 	- `request.on` 을 통해 요청을 해준다
 	- `response.on` 을 통해 응답을 받아온다
@@ -122,9 +157,9 @@ GET 메서드의 return 값이 잘못되어서 그런가 찾아봤는데, REST A
     → 데이터 전달 : 바로 보이지 않는 HTML body에 key:value 형태로 전달
 ```
 
-#### axios 로 호출 
+### axios 이용 
 
-그리고 쓰기 불편한 electron 의 net 모듈보다는 간편한 axios 를 통해 코드를 리팩토링 해주었다.
+쓰기 불편한 electron 의 net 모듈보다는 간편한 axios 를 통해 코드를 리팩토링 해주었다.
 ```js
 async function runPython(dicomPath: string) {
 	try {
@@ -144,8 +179,10 @@ async function runPython(dicomPath: string) {
 }
 ```
 
+
 `socket hang out` 이라는 난생 처음보는 에러가 나왔다.
-=> 찾았다. main 의 return 을 지정해주지않고, 기존의 `sys.exit('success')` 통해 코드 강제 종료시키면서 success 를 반환하니 거기서부터 꼬인것같다
+
+=> main 의 return 을 지정해주지않고, 기존의 `sys.exit('success')` 통해 코드 강제 종료시키면서 success 를 반환하니 거기서부터 꼬인것같다
 아래와 같이 성공하면 원래 의도한대로 'success'를 반환할수있게 고쳐주었다.
 
 ```python

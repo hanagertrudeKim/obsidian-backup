@@ -1,19 +1,43 @@
 
-#### code convention
-[[Lint]]
-[[웹 접근성]]
-#### css
-[[SCSS]]
-#### framework
-[[React-Query]]
-[[Redux]]
-#### javascript
-[[javascript 문법]]
-[[javascript 실습]]
-#### react
-[[nomad]]
-[[react 정리]]
+%% Begin Waypoint %%
+- **code convention**
+	- [[Lint]]
+	- [[웹 접근성]]
+- **css**
+	- [[SCSS]]
+- **framework**
+	- [[React-Query]]
+	- [[Redux]]
+- **Javascript**
+	- **[[javascript 문법]]**
+		- [[Class 관련 문법]]
+		- [[function]]
+		- [[switch 문]]
+		- [[변수]]
+	- **[[javascript 실습]]**
+		- [[크롬앱 클론 코딩 2]]
+		- [[크롬앱 클론 코딩]]
+- **React**
+	- **[[clone]]**
+		- [[react custom hook]]
+		- [[리액트 정리1]]
+		- [[리액트 정리2]]
+		- [[리액트 정리3]]
+		- [[리엑트 정리4]]
+	- **[[react 정리]]**
+		- [[Compound Components Pattern]]
+		- [[Difference Between Returning an Array and an Object]]
+		- [[File structure]]
+		- [[reusable component]]
+- **[[typescript]]**
+	- [[as const]]
+	- [[Class]]
+	- [[Generic]]
+	- [[Interface]]
+	- [[literal & primitive type]]
+	- [[type 정리]]
+	- [[유니온（＆） 교차 타입]]
+	- [[유틸리티 타입]]
+	- [[함수(function)]]
 
-#### typescript
-[[typescript]]
-
+%% End Waypoint %%

@@ -1,7 +1,4 @@
----
-tags:
-  - electron
----
+
 ## Electron이란? 
 - javascript, html, css사용한 **데스크탑앱 개발 프레임워크**
 - **node js + chromium**
@@ -23,7 +20,7 @@ tags:
 			- frontend process
 			- 서로 독립적으로 동작
 
-## IPC precess 에 대한 조사
+## IPC precess 구조
 - electron에서 사용되는 기술
 	- 웹기술에 빗대자면, 프론트와 백엔드간의 통신을 위해서 필요한 모듈?
 - **프로세스 간 통신**
@@ -33,8 +30,7 @@ tags:
 	- 직력화 된 json메시지로 주고받음 
 - 브라우저와 서버간의 데이터를 주고받아야하기 때문에, main으로 form 데이터를 보내고, main에서 파이썬 스크립트를 호출하면서 데이터를 전달하는 식으로 생각함
 
-
-### Main Processor
+#### Main Processor
 - backend process
 	- `main.js` 파일로 구축
 	- 앱은 단 하나의 main process를 가짐
@@ -45,7 +41,7 @@ tags:
 - 대표 프로세스
 	- ipcMain
 
-### Renderer Processor
+#### Renderer Processor
 - frontend process
 	- 여러개 존재 가능 ,  main process와 1: n 관계
 - chromium 기반
@@ -54,7 +50,7 @@ tags:
 	- ipcProcessor
 		- main 프로세스로 동기, 비동기 메시지를 보낼수있음
 
-### message, event 전달
+#### message, event 전달
 ``` js 
 - ipc에서 on을 통한 이벤트 수신(받기)
 ipcMain.on('CHANNEL_NAME', (evt, payload) => { })
@@ -74,7 +70,8 @@ ipcRenderer.send('CHANNEL_NAME', 'message')
 		-  renderer-ipc가 통신하는곳
 
 
-## ipc 모듈을 통하여 path 받아오기
+## ipc 모듈로 form 제출
+
 - 원래는 ipc-dicom 채널이름의 ipcMain으로 보내지는 순간 (= select folder 버튼이 눌리는 순간) 에 deid 가 되도록 설정해놨다.
 - 다른 form들을 받을 가능성이 있음으로 deid 시점을 form 입력을 완료하고 난 후, submit 시점으로 변경하고싶었다.
 - 해결 방법
@@ -137,3 +134,57 @@ window.electron.ipcRenderer.on(
 	});
 };
 ```
+
+
+## dialog module로  local directory path 얻기
+#### dialog module
+
+> Display native system dialogs for opening and saving files, alerting, etc.
+
+- **파일을 열거나 저장할수있는 모듈**
+- 알림을 표시하기 위한 네이티브 시스템 대화 상자를 표시
+- 파일이나 디렉터리를 다중으로 선택하는 예시 코드
+	- 렌더러 프로세스에서 열고싶다면, `remote` 를 통해 접근
+```js 
+const { dialog } = require('electron')
+console.log(dialog.showOpenDialog(
+	{ properties: ['openFile', 'multiSelections'] }))
+```
+
+
+- dialog 모듈은 다음과 같은 메서드를 가지고있다.
+```js
+dialog.showOpenDialogSync([browserWindow, ]options)
+```
+- browerWindow(opt)
+	- allows making it modal in parent window
+- options : object
+	- buttonLabel : custom label for the confirm btn
+	- filters : filefilter[]
+	- properites : features the dialog should use
+		- openFile : allow file select
+		- openDirectory : allow directories select
+			- window 와 linux 에서는 don't allow both a file, directory selector 
+		- "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
+
+#### loacl directory 가져오기
+
+html 의 input 태그를 사용한다면 디렉토리의 path가 아닌 파일 각각의 path를 가져오게 된다.
+그렇지만, 내가 필요한것은 디렉토리의 path 이기 때문에, electron 내장 모듈인 dialog module을 사용하였다. 
+
+아래와 같이 dialog의 `showOpenDialog`의 메서드로 `openDirectory` 를 이용하여 사용자의 디렉토리 path를 받아올수있게 해주었다.
+```js
+const result = await dialog.showOpenDialog(mainWindow, {
+	properties: ['openDirectory'],
+	});
+```
+
+- `result` 를 출력해보니, 다음과 같이 filePaths로 dicom folder가 받아와진다.
+```js
+{
+  canceled: false,
+  filePaths: [ '/Users/hana/Desktop/KU39009_20220921' ]
+}
+```
+
+

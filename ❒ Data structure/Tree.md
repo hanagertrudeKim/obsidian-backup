@@ -136,11 +136,14 @@ so you swap it right subtrees. (CASE 3)
 Lets introduce Preorder, Inorder,  PostOrder & Level order
 tree traversals usally can resolve using [[recursion]] Algorithm.
 
-1. Preorder
-preorder do something **before** the recursive calls
-print the value of the current node then traverse left -> right
+
+
+1. **Preorder**
+- preorder do something **before** the recursive calls 
+- 뿌리(root)를 먼저 방문함.
+- print the value of the current node then traverse left -> right
 ```c
-proorder(node):
+preorder(node):
 	if (node == null) return null;
 	print(node.value)
 	inorder(node.left)
@@ -149,10 +152,13 @@ proorder(node):
 ![](https://i.imgur.com/q9qrVtF.png)
 >  this case can be order => **A,  B,  D,  H,  I,  E,  C,  F,  J,  K,  G,  L**
 
-2. inorder
-Inorder do something **between** the recursive calls
+
+
+2. **inorder**
+- Inorder do something **between** the recursive calls
+- 왼쪽 하위 트리를 먼저 방문 후 뿌리(root) 방문함.
 ```c
-proorder(node):
+inorder(node):
 	if (node == null) return null;
 	inorder(node.left)
 	print(node.value)
@@ -162,10 +168,14 @@ proorder(node):
 > this case can be order => **1,  3,  5,  6,  8,  11,  12,  13,  14,  15,  17,  19**
 	Notice the value printed increasing order!
 
-3. Postorder
-Postorder do something **after** the recursive calls
+
+
+3. **Postorder**
+- Postorder do something **after** the recursive calls
+- 하위 트리 모두 방문 후 뿌리 방문
+
 ```c
-proorder(node):
+postorder(node):
 	if (node == null) return null;
 	inorder(node.left)
 	inorder(node.right)
@@ -174,9 +184,11 @@ proorder(node):
 ![](https://i.imgur.com/M7LXrM5.png)
 >this case can be order => **1,  5,  3,  8,  6,  12,  14,  13,  19,  17,  15,  11**
 
+
+
 4. Levelorder
-levelorder do someething the nodes as they apear one layer ar a time
-to obtain this 
+- levelorder do someething the nodes as they apear one layer ar a time
+- **위 쪽 node들 부터 아래방향으로 차례로 방문**
 ![](https://i.imgur.com/ljs4nIf.png)
 >this case can be order => **11, 6, 15, 3, 8, 13, 17, 1, 5, 12, 14, 19`**
 
@@ -185,6 +197,7 @@ To obtain this ordering we want to do a **Breadth First Search (BFS)** from the 
 To do BFS we will need maintain a **Queue** of the nodes left to explore.
 
 
+---
 ## example problem 
 
 ```ad-example
@@ -232,6 +245,59 @@ int getHeight(Node* tree){
 ```
 이 함수의 실행시간은 어떻게 되나?
 재귀적으로 각 노드마다 한번씩 함수가 호출됨으로 전체 실행 시간은 O(n)이다.
+
+
+## leet code
+
+- leetcode 226
+```ad-note
+Given the `root` of a binary tree, invert the tree, and return _its root_.
+```
+
+```c++
+/**
+
+* Definition for a binary tree node.
+* struct TreeNode {
+	* int val;
+	* TreeNode *left;
+	* TreeNode *right;
+	* TreeNode() : val(0), left(nullptr), right(nullptr) {}
+	* TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+	* TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+* };
+*/
+
+class Solution {
+public:
+TreeNode* invertTree(TreeNode* root) {
+	//이진트리 정렬 거꾸로
+	if (!root) return root;
+	
+	//postorder이용
+	invertTree(root->left);
+	invertTree(root->right);
+	TreeNode* tempRight = root->right;
+	root->right = root->left;
+	root->left = tempRight;
+	
+	return root;
+	}
+};
+```
+
+- Time complexity: o(n)
+
+- Space complexity: 
+#### solve problem
+- 이진트리 정렬 거꾸로 하기
+	- 이미 정렬되어있는 상태의 트리가 주어짐으로 (큰것은 오른쪽 작은것은 왼쪽) 양 쪽의 노드들을 모두 바꾸면 거꾸로 정렬하는것과 같은 상태가 된다. (큰것은 왼쪽 작은것은 오른쪽)
+- postorder을 사용한 이유
+	- invertTree 함수가 왼쪽 하위 루트부터 순회하며 오른쪽 노드와 왼쪽 노드를 바꿔치기한다.
+	- 아래쪽부터 순차적으로 바꿔줘야 오류가 생기지 않을것같았음..
+	- 해결답을 보니 preorder 순회를 해도 되는듯하다.
+
+
 
 
 
